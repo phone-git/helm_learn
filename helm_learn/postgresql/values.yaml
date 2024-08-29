@@ -705,11 +705,11 @@ primary:
   service:
     ## @param primary.service.type Kubernetes Service type
     ##
-    type: ClusterIP
+    type: LoadBalancer
     ## @param primary.service.ports.postgresql PostgreSQL service port
     ##
     ports:
-      postgresql: 5432
+      postgresql: 5412
     ## Node ports to expose
     ## NOTE: choose port between <30000-32767>
     ## @param primary.service.nodePorts.postgresql Node port for PostgreSQL
