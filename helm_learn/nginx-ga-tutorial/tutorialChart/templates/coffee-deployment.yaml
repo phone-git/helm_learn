@@ -1,0 +1,33 @@
+{{- $coffeeName := printf "%s-%s" .Release.Name "coffee" -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: {{ $coffeeName }} 
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: {{ $coffeeName }}
+    template:
+        metadata:
+            labels:
+                app: {{ $coffeeName }}
+        spec:
+            containers:
+            - name: {{ $coffeeName }}
+              image: nginxdemos/nginx-hello:plain-text
+              ports: 
+              - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata: 
+    name: {{ $coffeeName }}
+spec:
+    ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+      name: http
+    selector:
+        app: {{ $coffeeName }}
