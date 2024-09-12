@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata: 
-    name: {{ $coffeeName }}
+    name: {{ .Values.coffee.service.name }}
 spec:
     ports:
     - port: 80
